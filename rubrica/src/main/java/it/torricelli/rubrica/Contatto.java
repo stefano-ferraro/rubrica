@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Contatto {
@@ -11,9 +13,18 @@ public class Contatto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "Il nome non può essere vuoto")
     private String nome;
+
+    @NotBlank(message = "Il cognome non può essere vuoto")
     private String cognome;
+
+    @NotBlank(message = "Il telefono non può essere vuoto")
     private String telefono;
+
+    @Email(message = "Email non valida")
+    @NotBlank(message = "L'email non può essere vuota")
     private String email;
 
     public Contatto() {}

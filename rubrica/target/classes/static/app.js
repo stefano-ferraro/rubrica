@@ -25,11 +25,16 @@ async function aggiungi() {
     return;
   }
 
-  await fetch(API, {
+  const res = await fetch(API, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ nome, cognome, telefono, email })
   });
+
+  if (!res.ok) {
+    mostraNotifica('Dati non validi! Controlla i campi.', 'danger');
+    return;
+  }
 
   document.getElementById('nome').value = '';
   document.getElementById('cognome').value = '';
@@ -112,4 +117,11 @@ function mostraNotifica(messaggio, tipo) {
   setTimeout(() => notifica.classList.add('d-none'), 3000);
 }
 
-caricaTutti();
+window.onload = () => {
+  caricaTutti();
+  ['nome', 'cognome', 'telefono', 'email'].forEach(id => {
+    document.getElementById(id).addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') aggiungi();
+    });
+  });
+};

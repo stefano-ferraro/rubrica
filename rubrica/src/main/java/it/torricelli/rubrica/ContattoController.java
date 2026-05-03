@@ -1,6 +1,8 @@
 package it.torricelli.rubrica;
 
 import java.util.List;
+
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,12 +35,12 @@ public class ContattoController {
     }
 
     @PostMapping
-    public Contatto create(@RequestBody Contatto contatto) {
+    public Contatto create(@Valid @RequestBody Contatto contatto) {
         return service.save(contatto);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Contatto> update(@PathVariable Long id, @RequestBody Contatto contatto) {
+    public ResponseEntity<Contatto> update(@PathVariable Long id, @Valid @RequestBody Contatto contatto) {
         return service.findById(id)
                 .map(existing -> {
                     existing.setNome(contatto.getNome());
@@ -49,7 +51,6 @@ public class ContattoController {
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
