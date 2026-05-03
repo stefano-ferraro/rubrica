@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rubrica Contatti</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="/R.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <h1 class="mb-4">Rubrica Contatti</h1>
+
+    <div id="notifica" class="alert d-none" role="alert"></div>
+
+    <div class="input-group mb-4">
+        <input type="text" id="cercaNome" class="form-control" placeholder="Cerca per nome...">
+        <button class="btn btn-outline-secondary" onclick="cerca()">Cerca</button>
+        <button class="btn btn-outline-danger ms-2" onclick="caricaTutti()">Reset</button>
+    </div>
+
+    <table class="table table-hover">
+        <thead class="table-dark">
+        <tr>
+            <th>Nome</th>
+            <th>Cognome</th>
+            <th>Telefono</th>
+            <th>Email</th>
+            <th>Azioni</th>
+        </tr>
+        </thead>
+        <tbody id="tabellaContatti"></tbody>
+    </table>
+
+    <div class="card p-4 mt-4">
+        <h5 class="mb-3">Aggiungi Contatto</h5>
+        <div class="row g-2">
+            <div class="col-md-3">
+                <input type="text" id="nome" class="form-control" placeholder="Nome">
+            </div>
+            <div class="col-md-3">
+                <input type="text" id="cognome" class="form-control" placeholder="Cognome">
+            </div>
+            <div class="col-md-3">
+                <input type="text" id="telefono" class="form-control" placeholder="Telefono">
+            </div>
+            <div class="col-md-3">
+                <input type="email" id="email" class="form-control" placeholder="Email">
+            </div>
+        </div>
+        <button class="btn btn-primary mt-3" onclick="aggiungi()">Aggiungi</button>
+    </div>
+
+    <div class="modal fade" id="modalModifica" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modifica Contatto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="editId">
+                    <div class="mb-3">
+                        <input type="text" id="editNome" class="form-control" placeholder="Nome">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" id="editCognome" class="form-control" placeholder="Cognome">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" id="editTelefono" class="form-control" placeholder="Telefono">
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" id="editEmail" class="form-control" placeholder="Email">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                    <button class="btn btn-primary" onclick="salvaModifica()">Salva</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
